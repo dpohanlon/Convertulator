@@ -2,7 +2,7 @@ import sys
 import re
 
 from functools import partial
-from decimal import Decimal, ROUND_UP
+from decimal import Decimal, ROUND_HALF_UP
 
 usage = "Usage: convertulator.py textFile 'op' precision\n"
 usage += "(e.g: convertulator.py convert.tex ' * 100' 0.01)"
@@ -30,7 +30,7 @@ class Convertulator(object):
 
         val = float(matchObj.group(0)) 
         newVal = eval('val ' + self.expr)
-        roundVal = Decimal(str(newVal)).quantize(Decimal(self.precision), rounding = ROUND_UP)
+        roundVal = Decimal(str(newVal)).quantize(Decimal(self.precision), rounding = ROUND_HALF_UP)
 
         return str(roundVal)
 
